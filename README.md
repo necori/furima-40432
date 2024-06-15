@@ -2,16 +2,16 @@
 
 ## users テーブル(ユーザー情報)
 
-| Column       | Type   | Options                   |
-| ------------ | ------ | ------------------------- |
-| nickname     | string | null: false               |
-| email        | string | null: false, unique: true |
-| password     | string | null: false               |
-| birth_day    | date   | null: false               | 
-| first_name   | string | null: false               |
-| last_name    | string | null: false               |
-| read_first   | string | null: false               |
-| read_last    | string | null: false               |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| birth_day          | date   | null: false               | 
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| read_first         | string | null: false               |
+| read_last          | string | null: false               |
 ### Association
 - has_many : items
 - has_many : orders
