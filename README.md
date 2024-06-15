@@ -1,24 +1,58 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル(ユーザー情報)
 
-Things you may want to cover:
+| Column       | Type   | Options                   |
+| ------------ | ------ | ------------------------- |
+| nickname     | string | null: false               |
+| email        | string | null: false, unique: true |
+| password     | string | null: false               |
+| birth_day    | date   | null: false               | 
+| first_name   | string | null: false               |
+| last_name    | string | null: false               |
+| read_first   | string | null: false               |
+| read_last    | string | null: false               |
+### Association
+- has_many : items
+- has many : oders
 
-* Ruby version
+## items テーブル（商品情報）
 
-* System dependencies
+| Column              | Type       | Options                        |
+| -----------         | -----------| -------------------------------|
+| user                | references | null: false, foreign_key: true |
+| product_name        | string     | null: false                    |
+| product_description | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| shipping_id         | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| duration_id         | integer    | null: false                    |
+| price               | integer    | null: false                    |
+### Association
+- has_one : order
+- belongs_to : user
 
-* Configuration
+## orders テーブル（購入記録）
 
-* Database creation
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
+### Association
+- belongs_to : user
+- belongs_to : item
+- belongs_to : address
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## addresses テーブル（発送先情報）
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | -----------------------------  |
+| order              | references | null: false, foreign_key: true |
+| post_code          | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| municipalities     | string     | null: false                    |
+| address            | string     | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+### Association
+- belongs_to : order
