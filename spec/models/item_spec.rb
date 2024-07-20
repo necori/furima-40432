@@ -83,7 +83,13 @@ describe '商品情報の保存' do
     @item.price = 'ＡＡＡ'
     @item.valid?
     expect(@item.errors.full_messages).to include("Price must be half-width numbers")
-   end
+  end
+
+  it 'ユーザーが紐付いていなければ保存できない' do
+    @item.user = nil
+    @item.valid?
+    expect(@item.errors.full_messages).to include('User must exist')
+  end
   end
  end
 end

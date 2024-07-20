@@ -12,9 +12,10 @@ class Item < ApplicationRecord
     validates :price, numericality:{ with: /\A[0-9]+\z/, message: 'must be half-width numbers' }   
    
 
-  has_one :order
   belongs_to :user
   has_one_attached :image
+  include ActiveHash::Associations
+ 
 
   def was_attached?
     self.image.attached?
