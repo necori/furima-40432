@@ -13,6 +13,5 @@ class Category < ActiveHash::Base
   { id: 11, name: 'その他' }
   ]
   include ActiveHash::Associations
-  has_one :order
   belongs_to :item
 end

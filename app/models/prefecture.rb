@@ -19,7 +19,7 @@ class Prefecture < ActiveHash::Base
 ]
 
 include ActiveHash::Associations
-has_one :order
+has_many :items
 belongs_to :user
 
 end

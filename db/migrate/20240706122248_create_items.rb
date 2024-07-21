@@ -13,6 +13,4 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.timestamps
     end
   end
-  has_one : order
-  belongs_to : user
 end
