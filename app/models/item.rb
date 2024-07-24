@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   
   belongs_to :user
   has_one_attached :image
+  has_one :order
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
@@ -21,7 +22,8 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :duration
  
-
+  validates :content, presence: true, unless: :was_attached?
+  
   def was_attached?
     self.image.attached?
   end
