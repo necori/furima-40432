@@ -2,8 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only:[:new,:create,:edit,:update]
   before_action :move_to_index, except: [:index, :show, :new, :create]
   before_action :set_item, only:[:show,:edit,:update]
-  befofe_action :set_find, only:[:edit.:update]
-  
+    
  def index
   @items = Item.all.order('created_at DESC')
  end
@@ -51,8 +50,5 @@ end
 
     redirect_to action: :index
 
-    def set_find
-      @item = Item.find(params[:id])
-    end
   end
   end
