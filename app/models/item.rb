@@ -1,17 +1,4 @@
 class Item < ApplicationRecord
-    validates :product_name, presence: true
-    validates :image, presence: true
-    validates :product_description, presence: true
-    validates :category_id, presence: true, numericality: { other_than: 1 }
-    validates :condition_id, presence: true, numericality: { other_than: 1 }
-    validates :shipping_id, presence: true, numericality: { other_than: 1 }
-    validates :prefecture_id, presence: true, numericality: { other_than: 1 }
-    validates :duration_id, presence: true, numericality: { other_than: 1 }
-    validates :price, presence: true
-    validates :price, numericality: { only_integer: true, message: ' Half-width number'}
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}
- 
-  
   belongs_to :user
   has_one_attached :image
   has_one :order
@@ -21,10 +8,21 @@ class Item < ApplicationRecord
   belongs_to :shipping
   belongs_to :prefecture
   belongs_to :duration
- 
-  validates :content, presence: true, unless: :was_attached?
   
-  def was_attached?
-    self.image.attached?
-  end
+  validates :image,         presence: true
+  validates :product_name,  presence: true, length: { maximum: 40 }
+  validates :product_description,   presence: true, length: { maximum: 1000 }
+  validates :category_id,   numericality: { other_than: 1, message: "can't be blank" }
+  validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :shipping_id,     numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :duration_id,        numericality: { other_than: 1, message: "can't be blank" }
+ 
+  
+  with_options presence: true, format: { with: /\d/ } do
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
+                      presence: { message: "can't be blank" }
+
+       
+  end 
 end
