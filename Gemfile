@@ -88,3 +88,7 @@ gem 'rspec-rails', '~> 4.0.0'
 gem 'faker'
 
 gem 'active_hash'
+
+gem 'gon'
+
+gem 'payjp'

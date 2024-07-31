@@ -5,12 +5,9 @@
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
 
-
-<%= form_with model: @item, data: { turbo: false }, local: true do |f| %>
-
+<%= form_with model: @item, url: items_path,data: { turbo: false }, local: true do |f| %>
   
   <%= render 'shared/error_messages', model: f.object %>
-   <!-- other form fields... -->
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -146,7 +143,6 @@
   </div>
   <% end %>
 
-
   <footer class="items-sell-footer">
     <ul class="menu">
       <li><a href="#">プライバシーポリシー</a></li>
@@ -158,3 +154,4 @@
       ©︎Furima,Inc.
     </p>
   </footer>
+  </div>
